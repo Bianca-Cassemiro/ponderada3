@@ -1,11 +1,18 @@
-FROM python:latest
+# 
+FROM python:3.9
 
-WORKDIR /code
+# 
+WORKDIR /app
 
-COPY . .
+# 
+COPY ./requirements.txt /app/requirements.txt
+COPY ./random_forest.pkl /app/random_forest.pkl
+# 
+RUN pip install --no-cache-dir --upgrade -r /app/requirements.txt
 
-RUN pip install -r requirements.txt
+# 
+COPY ./app.py /app/app.py
 
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
-
-EXPOSE 8000
+EXPOSE 5000
+# 
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "5000"]
