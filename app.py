@@ -8,15 +8,6 @@ import pickle
 # Create the app
 app = FastAPI()
 
-df = pd.read_csv('Mall_Customers.csv')
-
-def generate_insights():
-    
-    age_counts = df['Age'].value_counts().reset_index()
-    age_counts.columns = ['Age', 'Count']
-
-    # Retorna os dados como um JSON
-    return age_counts.to_dict(orient='records')
 
 # Load trained Pipeline
 
